@@ -1,0 +1,629 @@
+{
+  "empresas": [
+    {
+      "id": "emp_chaves_imoveis",
+      "nome_fantasia": "Chaves Imóveis",
+      "razao_social": "Chaves Empreendimentos Imobiliários S/A",
+      "cnpj": "12.345.678/0001-90",
+      "status_contrato": "Ativo",
+      "codigo": 1
+    },
+    {
+      "id": "emp_acme_corp",
+      "nome_fantasia": "Acme Corp",
+      "razao_social": "Acme Indústria & Comércio S/A",
+      "cnpj": "98.765.432/0001-10",
+      "status_contrato": "Ativo",
+      "codigo": 2
+    },
+    {
+      "id": "emp_nova_empresa",
+      "nome_fantasia": "Nova Empresa",
+      "razao_social": "Nova Empresa de Tecnologia Ltda",
+      "cnpj": "11.222.333/0001-44",
+      "status_contrato": "Ativo",
+      "codigo": 3
+    },
+    {
+      "id": "emp_skyangle",
+      "codigo": 4,
+      "nome_fantasia": "Skyangle",
+      "razao_social": "SKYANGLE JOGOS E ENTRETENIMENTOS",
+      "cnpj": "54.448.436/0001-66",
+      "status_contrato": "Ativo"
+    },
+    {
+      "id": "emp_col_gio_e_faculdade_s_o_judas_tadeu",
+      "codigo": 5,
+      "nome_fantasia": "Colégio e Faculdade São Judas Tadeu",
+      "razao_social": "COLEGIO SAO JUDAS TADEU LTDA",
+      "cnpj": "33.717.711/0001-30",
+      "status_contrato": "Ativo"
+    }
+  ],
+  "usuarios": [
+    {
+      "id_usuario": "usr_1-0109",
+      "fk_empresa": "emp_chaves_imoveis",
+      "nome_completo": "Cauã Ferreira",
+      "matricula": "1-0109",
+      "cargo": "Auxiliar de Serviços Administrativos",
+      "setor": "Contas a Pagar",
+      "saldo_estrelas": 0,
+      "status": "Ativo",
+      "senha": "123456",
+      "role": "gestor",
+      "foto": ""
+    },
+    {
+      "id_usuario": "usr_2-0808",
+      "fk_empresa": "emp_acme_corp",
+      "nome_completo": "Maria Souza",
+      "matricula": "2-0808",
+      "cargo": "Analista de Operações",
+      "setor": "Logística",
+      "saldo_estrelas": 10,
+      "status": "Ativo",
+      "senha": "123456",
+      "role": "colaborador",
+      "foto": ""
+    },
+    {
+      "id_usuario": "usr_3-7001",
+      "fk_empresa": "emp_nova_empresa",
+      "nome_completo": "Carlos Gestor",
+      "matricula": "3-7001",
+      "cargo": "Gerente de TI",
+      "setor": "Tecnologia",
+      "saldo_estrelas": 0,
+      "status": "Ativo",
+      "senha": "123",
+      "role": "gestor",
+      "foto": ""
+    },
+    {
+      "id_usuario": "usr_3-7002",
+      "fk_empresa": "emp_nova_empresa",
+      "nome_completo": "Ana Colaboradora",
+      "matricula": "3-7002",
+      "cargo": "Desenvolvedora Frontend",
+      "setor": "Tecnologia",
+      "saldo_estrelas": 0,
+      "status": "Ativo",
+      "senha": "123",
+      "role": "colaborador",
+      "foto": ""
+    },
+    {
+      "id_usuario": "usr_4-0000",
+      "fk_empresa": "emp_skyangle",
+      "nome_completo": "Cauã Ferreira",
+      "matricula": "4-0000",
+      "cargo": "Gestor Geral",
+      "setor": "Diretoria",
+      "saldo_estrelas": 0,
+      "status": "Ativo",
+      "senha": "0000",
+      "role": "gestor",
+      "foto": ""
+    },
+    {
+      "id_usuario": "usr_1-3121",
+      "fk_empresa": "emp_chaves_imoveis",
+      "nome_completo": "Fernanda Silva",
+      "matricula": "1-3121",
+      "cargo": "Assistência",
+      "setor": "Geral",
+      "saldo_estrelas": 0,
+      "status": "Ativo",
+      "senha": "3121",
+      "role": "colaborador",
+      "foto": ""
+    },
+    {
+      "id_usuario": "usr_1-0000",
+      "fk_empresa": "emp_chaves_imoveis",
+      "nome_completo": "Caio Gonçalves",
+      "matricula": "1-0000",
+      "cargo": "Assistente Administrativo",
+      "setor": "Geral",
+      "saldo_estrelas": 0,
+      "status": "Ativo",
+      "senha": "0000",
+      "role": "colaborador",
+      "foto": ""
+    },
+    {
+      "id_usuario": "usr_1-0001",
+      "fk_empresa": "emp_chaves_imoveis",
+      "nome_completo": "Victor Hugo Cid",
+      "matricula": "1-0001",
+      "cargo": "Assistente Administrativo",
+      "setor": "Geral",
+      "saldo_estrelas": 2,
+      "status": "Ativo",
+      "senha": "0001",
+      "role": "colaborador",
+      "foto": ""
+    },
+    {
+      "id_usuario": "usr_1-0002",
+      "fk_empresa": "emp_chaves_imoveis",
+      "nome_completo": "Manuela Machado",
+      "matricula": "1-0002",
+      "cargo": "Assistente Administrativo",
+      "setor": "Geral",
+      "saldo_estrelas": 0,
+      "status": "Ativo",
+      "senha": "0000",
+      "role": "colaborador",
+      "foto": ""
+    },
+    {
+      "id_usuario": "usr_5-0000",
+      "fk_empresa": "emp_col_gio_e_faculdade_s_o_judas_tadeu",
+      "nome_completo": "Cauã Chaves",
+      "matricula": "5-0000",
+      "cargo": "Gestor Geral",
+      "setor": "Diretoria",
+      "saldo_estrelas": 0,
+      "status": "Ativo",
+      "senha": "0000",
+      "role": "gestor",
+      "foto": ""
+    },
+    {
+      "id_usuario": "usr_5-0001",
+      "fk_empresa": "emp_col_gio_e_faculdade_s_o_judas_tadeu",
+      "nome_completo": "Gustavo Bruni",
+      "matricula": "5-0001",
+      "cargo": "Professor de Contabilidade",
+      "setor": "Geral",
+      "saldo_estrelas": 1,
+      "status": "Ativo",
+      "senha": "0000",
+      "role": "colaborador",
+      "foto": ""
+    }
+  ],
+  "comunicados": [
+    {
+      "id": "com_1",
+      "titulo": "Funcionamento do Refeitório Interno",
+      "conteudo": "Informamos que no dia 05/07 o refeitório funcionará em horário reduzido (12h às 13h) por conta de manutenção preventiva dos equipamentos.",
+      "data": "02/07/2026",
+      "tipo": "operacional",
+      "pontos": 0
+    },
+    {
+      "id": "com_2",
+      "titulo": "Palestra Janeiro Branco: Saúde Mental",
+      "conteudo": "Cuidar da mente é o melhor caminho. Participe da palestra interativa de equilíbrio emocional com psicólogos convidados.",
+      "data": "02/07/2026",
+      "tipo": "treinamento",
+      "pontos": 1
+    },
+    {
+      "id": "com_3",
+      "titulo": "NR-10: Segurança em Instalações Elétricas",
+      "conteudo": "Procedimentos de isolamento, prevenção contra choques e arco elétrico. Curso obrigatório e preventivo.",
+      "data": "28/06/2026",
+      "tipo": "treinamento",
+      "pontos": 1
+    }
+  ],
+  "treinamentos": [
+    {
+      "id": "ev_nr35",
+      "titulo": "Treinamento de NR-35 (Trabalho em Altura)",
+      "data": "05/07/2026 às 14:00",
+      "pin": "3535",
+      "fk_empresa": "emp_chaves_imoveis",
+      "status_por_usuario": {
+        "1-0109": "registered",
+        "2-0808": "unregistered",
+        "1-0000": "registered",
+        "1-0001": "registered",
+        "1-3121": "unregistered",
+        "1-0002": "unregistered"
+      },
+      "matriculas_validadas": [
+        "1-0001"
+      ],
+      "sessionPin": "6897"
+    },
+    {
+      "id": "ev_nr10",
+      "titulo": "Treinamento de NR-10 (Segurança em Eletricidade)",
+      "data": "08/07/2026 às 09:00",
+      "pin": "1010",
+      "fk_empresa": "emp_chaves_imoveis",
+      "status_por_usuario": {
+        "1-0109": "unregistered",
+        "2-0808": "registered",
+        "1-0000": "unregistered",
+        "1-0001": "registered",
+        "1-3121": "unregistered",
+        "1-0002": "unregistered"
+      },
+      "matriculas_validadas": [
+        "1-0001"
+      ],
+      "sessionPin": "7162"
+    },
+    {
+      "id": "ev_mapeamento",
+      "titulo": "Mapeamento de Riscos e Ergonomia",
+      "data": "12/07/2026 às 10:30",
+      "pin": "2026",
+      "fk_empresa": "emp_chaves_imoveis",
+      "status_por_usuario": {
+        "1-0109": "registered",
+        "2-0808": "unregistered",
+        "1-0000": "unregistered",
+        "1-0001": "unregistered",
+        "1-3121": "unregistered",
+        "1-0002": "unregistered"
+      },
+      "matriculas_validadas": [],
+      "sessionPin": ""
+    },
+    {
+      "id": "tr_1784126663208",
+      "titulo": "Treinamento teste",
+      "data": "17/07/2026",
+      "pin": "3535",
+      "fk_empresa": "emp_chaves_imoveis",
+      "status_por_usuario": {
+        "1-0109": "unregistered",
+        "1-3121": "unregistered",
+        "1-0000": "unregistered",
+        "1-0001": "unregistered",
+        "1-0002": "unregistered"
+      },
+      "matriculas_validadas": [],
+      "sessionPin": ""
+    },
+    {
+      "id": "tr_1784204920425",
+      "titulo": "Apresentação Qualitativa - Trabalho de Conclusão de Curso",
+      "data": "17/07/2026 às 08:00",
+      "pin": "",
+      "fk_empresa": "emp_col_gio_e_faculdade_s_o_judas_tadeu",
+      "status_por_usuario": {
+        "5-0000": "unregistered",
+        "5-0001": "registered"
+      },
+      "matriculas_validadas": [
+        "5-0001"
+      ],
+      "sessionPin": null,
+      "presencas_sessao": [
+        {
+          "matricula": "5-0001",
+          "nome": "Gustavo Bruni",
+          "setor": "Geral",
+          "hora_entrada": "08:17:55",
+          "hora_entrada_ts": 1784287075711,
+          "hora_saida": "08:18:07",
+          "hora_saida_ts": 1784287087779
+        }
+      ],
+      "encerrado": true,
+      "encerrado_em": "17/07/2026 08:18"
+    }
+  ],
+  "loja": [
+    {
+      "id": "item_1",
+      "nome": "Chaveiro / Bottom Emblema",
+      "tipo": "global",
+      "custo": 2,
+      "estoque": 48,
+      "icon": "fa-solid fa-key",
+      "foto": "",
+      "protegido": true
+    },
+    {
+      "id": "item_2",
+      "nome": "Garrafa Térmica Executiva",
+      "tipo": "global",
+      "custo": 5,
+      "estoque": 15,
+      "icon": "fa-solid fa-bottle-water",
+      "foto": "",
+      "protegido": true
+    },
+    {
+      "id": "item_3",
+      "nome": "Cartão Presente Digital (R$ 50,00)",
+      "tipo": "global",
+      "custo": 6,
+      "estoque": 10,
+      "icon": "fa-solid fa-gift",
+      "foto": "",
+      "protegido": true
+    },
+    {
+      "id": "item_4",
+      "nome": "Produto Customizado da Empresa",
+      "tipo": "local",
+      "custo": 12,
+      "estoque": 5,
+      "icon": "fa-solid fa-shirt",
+      "foto": "",
+      "protegido": false
+    },
+    {
+      "id": "item_5",
+      "nome": "Day Off (1 Dia de Folga Programada)",
+      "tipo": "local",
+      "custo": 15,
+      "estoque": 3,
+      "icon": "fa-solid fa-calendar-minus",
+      "foto": "",
+      "protegido": true
+    }
+  ],
+  "extrato_por_usuario": {
+    "3-7001": [],
+    "3-7002": [],
+    "1-0109": [
+      {
+        "data": "01/07/2026 08:30",
+        "tipo": "credito",
+        "desc": "Saldo inicial ao ser cadastrado",
+        "valor": 4
+      },
+      {
+        "data": "15/07/2026 11:16",
+        "tipo": "debito",
+        "desc": "Resgatado na Loja: Chaveiro / Bottom Emblema",
+        "valor": 2
+      },
+      {
+        "data": "15/07/2026 11:16",
+        "tipo": "debito",
+        "desc": "Resgatado na Loja: Chaveiro / Bottom Emblema",
+        "valor": 2
+      }
+    ],
+    "2-0808": [
+      {
+        "data": "01/07/2026 08:30",
+        "tipo": "credito",
+        "desc": "Saldo inicial ao ser cadastrado",
+        "valor": 10
+      }
+    ],
+    "4-0000": [],
+    "1-3121": [
+      {
+        "data": "08/07/2026, 11:51:03",
+        "tipo": "credito",
+        "desc": "Adesão à plataforma",
+        "valor": 0
+      }
+    ],
+    "1-0000": [
+      {
+        "data": "15/07/2026, 07:53:25",
+        "tipo": "credito",
+        "desc": "Adesão à plataforma",
+        "valor": 0
+      }
+    ],
+    "1-0001": [
+      {
+        "data": "15/07/2026, 07:57:58",
+        "tipo": "credito",
+        "desc": "Adesão à plataforma",
+        "valor": 0
+      },
+      {
+        "data": "16/07/2026 09:22",
+        "tipo": "credito",
+        "desc": "Presença Validada no treinamento: Treinamento de NR-35 (Trabalho em Altura)",
+        "valor": 1
+      },
+      {
+        "data": "16/07/2026 09:23",
+        "tipo": "credito",
+        "desc": "Presença Validada no treinamento: Treinamento de NR-10 (Segurança em Eletricidade)",
+        "valor": 1
+      }
+    ],
+    "1-0002": [
+      {
+        "data": "15/07/2026, 08:38:48",
+        "tipo": "credito",
+        "desc": "Adesão à plataforma",
+        "valor": 0
+      }
+    ],
+    "5-0000": [],
+    "5-0001": [
+      {
+        "data": "17/07/2026, 08:15:55",
+        "tipo": "credito",
+        "desc": "Adesão à plataforma",
+        "valor": 0
+      },
+      {
+        "data": "17/07/2026 08:17",
+        "tipo": "credito",
+        "desc": "Presença Validada no treinamento: Apresentação Qualitativa - Trabalho de Conclusão de Curso",
+        "valor": 1
+      }
+    ]
+  },
+  "chats": {
+    "emp_chaves_imoveis": [
+      {
+        "id": "1784115617527_cldppn3w83",
+        "empresaId": "emp_chaves_imoveis",
+        "autor": {
+          "nome": "Victor Hugo Cid",
+          "matricula": "1-0001"
+        },
+        "target": "1-3121",
+        "text": "Oii",
+        "mediaType": null,
+        "mediaName": null,
+        "mediaData": null,
+        "flagged": false,
+        "timestamp": "2026-07-15T11:40:17.527Z"
+      },
+      {
+        "id": "1784115629718_6nylms7hupo",
+        "empresaId": "emp_chaves_imoveis",
+        "autor": {
+          "nome": "Victor Hugo Cid",
+          "matricula": "1-0001"
+        },
+        "target": "geral",
+        "text": "Oiê",
+        "mediaType": null,
+        "mediaName": null,
+        "mediaData": null,
+        "flagged": false,
+        "timestamp": "2026-07-15T11:40:29.718Z"
+      },
+      {
+        "id": "1784115650860_x5r1nv53vc",
+        "empresaId": "emp_chaves_imoveis",
+        "autor": {
+          "nome": "Victor Hugo Cid",
+          "matricula": "1-0001"
+        },
+        "target": "geral",
+        "text": "Idiota",
+        "mediaType": null,
+        "mediaName": null,
+        "mediaData": null,
+        "flagged": true,
+        "timestamp": "2026-07-15T11:40:50.860Z"
+      },
+      {
+        "id": "1784124654286_8vi35q891pk",
+        "empresaId": "emp_chaves_imoveis",
+        "autor": {
+          "nome": "Cauã Ferreira",
+          "matricula": "1-0109"
+        },
+        "target": "1-0001",
+        "text": "oi",
+        "mediaType": null,
+        "mediaName": null,
+        "mediaData": null,
+        "flagged": false,
+        "timestamp": "2026-07-15T14:10:54.286Z"
+      },
+      {
+        "id": "1784126101141_0d39d8d97daq",
+        "empresaId": "emp_chaves_imoveis",
+        "autor": {
+          "nome": "Victor Hugo Cid",
+          "matricula": "1-0001"
+        },
+        "target": "geral",
+        "text": "Oi",
+        "mediaType": null,
+        "mediaName": null,
+        "mediaData": null,
+        "flagged": false,
+        "timestamp": "2026-07-15T14:35:01.141Z"
+      },
+      {
+        "id": "1784126113196_rmq0fzt1gr",
+        "empresaId": "emp_chaves_imoveis",
+        "autor": {
+          "nome": "Victor Hugo Cid",
+          "matricula": "1-0001"
+        },
+        "target": "geral",
+        "text": "",
+        "mediaType": "image",
+        "mediaName": "Screenshot_2026-07-15-11-33-27-813_com.android.chrome.jpg",
+        "mediaData": "[MEDIA]",
+        "flagged": false,
+        "timestamp": "2026-07-15T14:35:13.196Z"
+      },
+      {
+        "id": "1784126126275_lpihfkyjcmq",
+        "empresaId": "emp_chaves_imoveis",
+        "autor": {
+          "nome": "Cauã Ferreira",
+          "matricula": "1-0109"
+        },
+        "target": "1-0001",
+        "text": "oi",
+        "mediaType": null,
+        "mediaName": null,
+        "mediaData": null,
+        "flagged": false,
+        "timestamp": "2026-07-15T14:35:26.275Z"
+      }
+    ],
+    "emp_col_gio_e_faculdade_s_o_judas_tadeu": [
+      {
+        "id": "1784287003636_hf1ruk7yixf",
+        "empresaId": "emp_col_gio_e_faculdade_s_o_judas_tadeu",
+        "autor": {
+          "nome": "Gustavo Bruni",
+          "matricula": "5-0001"
+        },
+        "target": "geral",
+        "text": "Oii",
+        "mediaType": null,
+        "mediaName": null,
+        "mediaData": null,
+        "flagged": false,
+        "timestamp": "2026-07-17T11:16:43.643Z"
+      },
+      {
+        "id": "1784287015863_7c1b3goweek",
+        "empresaId": "emp_col_gio_e_faculdade_s_o_judas_tadeu",
+        "autor": {
+          "nome": "Gustavo Bruni",
+          "matricula": "5-0001"
+        },
+        "target": "geral",
+        "text": "Idiota",
+        "mediaType": null,
+        "mediaName": null,
+        "mediaData": null,
+        "flagged": true,
+        "timestamp": "2026-07-17T11:16:55.863Z"
+      }
+    ]
+  },
+  "chat_alerts": {
+    "emp_chaves_imoveis": [
+      {
+        "id": "1784115650860_x5r1nv53vc",
+        "autor": {
+          "nome": "Victor Hugo Cid",
+          "matricula": "1-0001"
+        },
+        "target": "geral",
+        "text": "Idiota",
+        "trigger": "idiota",
+        "timestamp": "2026-07-15T11:40:50.860Z"
+      }
+    ],
+    "emp_col_gio_e_faculdade_s_o_judas_tadeu": [
+      {
+        "id": "1784287015863_7c1b3goweek",
+        "autor": {
+          "nome": "Gustavo Bruni",
+          "matricula": "5-0001"
+        },
+        "target": "geral",
+        "text": "Idiota",
+        "trigger": "idiota",
+        "timestamp": "2026-07-17T11:16:55.863Z"
+      }
+    ]
+  }
+}

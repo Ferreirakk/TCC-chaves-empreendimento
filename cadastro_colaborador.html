@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Chaves Clima — Cadastro de Colaborador</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --primary: #0d3b6e;
+            --primary-light: #1a6bbf;
+            --accent: #f59e0b;
+            --bg: #f0f4f8;
+            --card: #ffffff;
+            --text: #1e293b;
+            --muted: #64748b;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 20px 20px 28px;
+            text-align: center;
+            position: relative;
+        }
+        .header .logo { font-size: 2rem; margin-bottom: 6px; }
+        .header h1 { font-size: 1.2rem; font-weight: 700; }
+        .header p { font-size: 0.85rem; opacity: 0.8; margin-top: 4px; }
+
+        .company-badge {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 12px;
+            padding: 10px 16px;
+            margin: 12px 0 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .company-badge i { opacity: 0.8; }
+
+        .main {
+            flex: 1;
+            padding: 24px 16px 40px;
+            max-width: 480px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 4px 24px rgba(13,59,110,0.10);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card-title i {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 8px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+        }
+
+        .form-group { margin-bottom: 16px; }
+        label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        input, select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Outfit', sans-serif;
+            color: var(--text);
+            background: #f8fafc;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            -webkit-appearance: none;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 4px rgba(26,107,191,0.12);
+            background: white;
+        }
+
+        .pin-hint {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 0.82rem;
+            color: #92400e;
+            margin-bottom: 16px;
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+        }
+        .pin-hint i { margin-top: 2px; flex-shrink: 0; }
+
+        .pin-preview {
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            background: var(--primary);
+            color: white;
+            border-radius: 8px;
+            padding: 2px 10px;
+            font-family: monospace;
+            font-weight: 900;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 8px;
+            transition: transform 0.15s, box-shadow 0.15s;
+            box-shadow: 0 4px 16px rgba(13,59,110,0.25);
+        }
+        .btn-submit:active { transform: scale(0.98); }
+        .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--text);
+            color: white;
+            padding: 14px 24px;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+            z-index: 9999;
+            transition: transform 0.35s cubic-bezier(.34,1.56,.64,1);
+            text-align: center;
+            max-width: 90vw;
+        }
+        .toast.show { transform: translateX(-50%) translateY(0); }
+        .toast.success { background: var(--success); }
+        .toast.error { background: var(--danger); }
+
+        .success-screen {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        .success-screen .icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--success), #059669);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: white;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 24px rgba(16,185,129,0.35);
+        }
+        .success-screen h2 { color: var(--primary); font-size: 1.3rem; margin-bottom: 10px; }
+        .success-screen p { color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
+        .pin-card {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin: 20px 0;
+            width: 100%;
+        }
+        .pin-card .label { font-size: 0.75rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+        .pin-card .value { font-size: 2rem; font-weight: 900; font-family: monospace; letter-spacing: 3px; }
+        .pin-card .sub { font-size: 0.8rem; opacity: 0.75; margin-top: 4px; }
+
+        .error-screen {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            color: var(--muted);
+        }
+        .error-screen i { font-size: 3rem; color: var(--danger); margin-bottom: 16px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo"><i class="fa-solid fa-key"></i></div>
+        <h1>Chaves Clima</h1>
+        <p>Plataforma de Engajamento Corporativo</p>
+        <div class="company-badge" id="companyBadge">
+            <i class="fa-solid fa-building"></i>
+            <span id="companyName">Carregando...</span>
+        </div>
+    </div>
+
+    <div class="main">
+        <!-- Tela de Carregamento -->
+        <div id="loadingScreen" class="card" style="text-align:center; padding: 40px 24px; color: var(--muted);">
+            <i class="fa-solid fa-circle-notch fa-spin" style="font-size:2rem; color:var(--primary-light); margin-bottom:12px;"></i>
+            <p>Carregando dados da empresa...</p>
+        </div>
+
+        <!-- Tela de Erro -->
+        <div id="errorScreen" class="card error-screen">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <h2 style="color:var(--danger); margin-bottom:8px;">Link inválido</h2>
+            <p>Este QR Code não contém as informações da empresa. Peça ao seu gestor para gerar um novo QR Code.</p>
+        </div>
+
+        <!-- Passo de Seleção de Empresa (se não vier no URL) -->
+        <div id="companySelectionScreen" class="card" style="display:none; margin-bottom: 20px;">
+            <div class="card-title">
+                <i class="fa-solid fa-building"></i>
+                Selecione sua Empresa
+            </div>
+            <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 15px;">Para iniciar o seu cadastro, selecione abaixo a empresa à qual você pertence.</p>
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label>Empresa Parceira</label>
+                <select id="selectEmpresaCadastro" onchange="handleCompanySelectChange()" style="width: 100%; padding: 14px 16px; border: 2px solid var(--border); border-radius: 12px; font-size: 1rem; font-family: 'Outfit', sans-serif; background: #f8fafc; color: var(--text);">
+                    <!-- Dinâmico -->
+                </select>
+            </div>
+            <button class="btn-submit" onclick="goToCadastroForm()">
+                Avançar <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+
+        <!-- Formulário de Cadastro -->
+        <div id="formScreen" class="card" style="display:none;">
+            <div class="form-section" id="formSection">
+                <div class="card-title">
+                    <i class="fa-solid fa-user-plus"></i>
+                    Seu Cadastro
+                </div>
+
+                <div class="pin-hint">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>O <strong>número de matrícula</strong> que você escolher abaixo receberá automaticamente o código da sua empresa na frente. Ex: <span class="pin-preview" id="pinExemplo">1-1234</span></span>
+                </div>
+
+                <form id="formCadastro" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label>Nome Completo</label>
+                        <input type="text" id="m_nome" required placeholder="Seu nome completo" autocomplete="name">
+                    </div>
+                    <div class="form-group">
+                        <label>Número de Matrícula</label>
+                        <div class="matricula-input-wrapper" style="display: flex; align-items: center; gap: 8px;">
+                            <span id="matriculaPrefix" style="background: var(--primary); color: white; padding: 14px 16px; border-radius: 12px; font-weight: 700; font-family: monospace; font-size: 1.05rem; border: 2px solid var(--primary); display: inline-block; min-width: 45px; text-align: center;">1-</span>
+                            <input type="text" id="m_matricula" required placeholder="Digite o restante do PIN (ex: 1234)" inputmode="numeric" oninput="atualizarPreview()" style="flex: 1;">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Senha de Acesso</label>
+                        <input type="password" id="m_senha" required placeholder="Crie uma senha" autocomplete="new-password">
+                    </div>
+                    <div class="form-group">
+                        <label>Cargo / Função</label>
+                        <input type="text" id="m_cargo" required placeholder="Ex: Assistente Administrativo" autocomplete="organization-title">
+                    </div>
+                    <button type="submit" class="btn-submit" id="btnSubmit">
+                        <i class="fa-solid fa-user-check"></i> Finalizar Cadastro
+                    </button>
+                </form>
+            </div>
+
+            <!-- Tela de Sucesso (dentro do card) -->
+            <div class="success-screen" id="successSection">
+                <div class="icon"><i class="fa-solid fa-check"></i></div>
+                <h2>Cadastro realizado!</h2>
+                <p>Você já pode acessar o portal com suas credenciais:</p>
+                <div class="pin-card">
+                    <div class="label">Sua Matrícula (PIN de Login)</div>
+                    <div class="value" id="resultPin">—</div>
+                    <div class="sub">Use este código + sua senha para entrar</div>
+                </div>
+                <p style="font-size:0.85rem;">Guarde este número! Você precisará dele para fazer login no portal da <strong id="resultEmpresa">—</strong>.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const empresaId = params.get('empresa');
+        const codigoEmpresa = params.get('codigo');
+        const serverBase = window.location.origin; // usa o mesmo servidor
+
+        let db = null;
+        let empresa = null;
+        let selectedEmpresaId = null;
+        let selectedCodigoEmpresa = null;
+
+        async function init() {
+            // Carrega dados iniciais/mais recentes do servidor
+            try {
+                const res = await fetch(`${serverBase}/api/db`);
+                db = await res.json();
+            } catch (e) {
+                console.error("Erro ao ler banco de dados, tentando localStorage:", e);
+                const savedData = localStorage.getItem("chaves_tcc_db_v2");
+                if (savedData) {
+                    db = JSON.parse(savedData);
+                }
+            }
+
+            if (!db) {
+                document.getElementById('loadingScreen').innerHTML = `
+                    <p style="color:var(--danger); font-weight:600;">Sem dados de banco de dados.</p>
+                `;
+                return;
+            }
+
+            // Verifica se possui parâmetros na URL
+            if (empresaId && codigoEmpresa) {
+                selectedEmpresaId = empresaId;
+                selectedCodigoEmpresa = codigoEmpresa;
+                empresa = db.empresas.find(e => e.id === empresaId);
+
+                if (!empresa) {
+                    document.getElementById('loadingScreen').style.display = 'none';
+                    document.getElementById('errorScreen').style.display = 'flex';
+                    return;
+                }
+
+                showCadastroForm();
+            } else {
+                // Se não vier parâmetros na URL, exibe tela de seleção de empresa
+                document.getElementById('loadingScreen').style.display = 'none';
+                populateCompanySelectionDropdown();
+                document.getElementById('companySelectionScreen').style.display = 'block';
+            }
+        }
+
+        function populateCompanySelectionDropdown() {
+            const select = document.getElementById('selectEmpresaCadastro');
+            select.innerHTML = '<option value="">-- Selecione sua Empresa --</option>';
+            db.empresas.forEach(emp => {
+                const option = document.createElement('option');
+                option.value = emp.id;
+                option.dataset.codigo = emp.codigo || 0;
+                option.textContent = `${emp.nome_fantasia} (Prefixo: ${emp.codigo || 0}-)`;
+                select.appendChild(option);
+            });
+        }
+
+        function handleCompanySelectChange() {
+            const select = document.getElementById('selectEmpresaCadastro');
+            const selectedOption = select.options[select.selectedIndex];
+            if (selectedOption && selectedOption.value) {
+                selectedEmpresaId = selectedOption.value;
+                selectedCodigoEmpresa = selectedOption.dataset.codigo;
+            } else {
+                selectedEmpresaId = null;
+                selectedCodigoEmpresa = null;
+            }
+        }
+
+        function goToCadastroForm() {
+            if (!selectedEmpresaId) {
+                showToast('Selecione uma empresa para continuar!', 'error');
+                return;
+            }
+            empresa = db.empresas.find(e => e.id === selectedEmpresaId);
+            showCadastroForm();
+        }
+
+        function showCadastroForm() {
+            document.getElementById('companySelectionScreen').style.display = 'none';
+            document.getElementById('companyName').textContent = empresa.nome_fantasia;
+            document.getElementById('matriculaPrefix').textContent = `${selectedCodigoEmpresa}-`;
+            document.getElementById('pinExemplo').textContent = `${selectedCodigoEmpresa}-1234`;
+            document.getElementById('formScreen').style.display = 'block';
+            atualizarPreview();
+        }
+
+        function atualizarPreview() {
+            const base = document.getElementById('m_matricula').value.trim();
+            document.getElementById('pinExemplo').textContent = base ? `${selectedCodigoEmpresa}-${base}` : `${selectedCodigoEmpresa}-1234`;
+        }
+
+        function showToast(msg, type = '') {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.className = `toast ${type} show`;
+            setTimeout(() => { t.className = 'toast'; }, 3500);
+        }
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+            const nome = document.getElementById('m_nome').value.trim();
+            const matriculaBase = document.getElementById('m_matricula').value.trim();
+            const senha = document.getElementById('m_senha').value;
+            const cargo = document.getElementById('m_cargo').value.trim();
+
+            if (!nome || !matriculaBase || !senha || !cargo) {
+                showToast('Preencha todos os campos!', 'error');
+                return;
+            }
+
+            const matriculaFormatada = `${selectedCodigoEmpresa}-${matriculaBase}`;
+
+            const btn = document.getElementById('btnSubmit');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Salvando...';
+
+            // Recarrega o banco mais recente do servidor para evitar race conditions
+            try {
+                const freshRes = await fetch(`${serverBase}/api/db`);
+                db = await freshRes.json();
+            } catch(e) {
+                console.error("Não foi possível sincronizar o banco:", e);
+            }
+
+            if (db.usuarios.some(u => u.matricula === matriculaFormatada)) {
+                showToast('Esta matrícula já está em uso! Tente outro número.', 'error');
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-user-check"></i> Finalizar Cadastro';
+                return;
+            }
+
+            db.usuarios.push({
+                id_usuario: `usr_${matriculaFormatada}`,
+                fk_empresa: selectedEmpresaId,
+                nome_completo: nome,
+                matricula: matriculaFormatada,
+                cargo: cargo,
+                setor: 'Geral',
+                saldo_estrelas: 0,
+                status: 'Ativo',
+                senha: senha,
+                role: 'colaborador',
+                foto: ''
+            });
+
+            if (!db.extrato_por_usuario) db.extrato_por_usuario = {};
+            db.extrato_por_usuario[matriculaFormatada] = [
+                {
+                    data: new Date().toLocaleString('pt-BR'),
+                    tipo: 'credito',
+                    desc: 'Adesão à plataforma',
+                    valor: 0
+                }
+            ];
+
+            try {
+                await fetch(`${serverBase}/api/db`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(db)
+                });
+
+                // Mostra tela de sucesso
+                document.getElementById('resultPin').textContent = matriculaFormatada;
+                document.getElementById('resultEmpresa').textContent = empresa.nome_fantasia;
+                document.getElementById('formSection').style.display = 'none';
+                document.getElementById('successSection').style.display = 'flex';
+
+            } catch(e) {
+                showToast('Erro ao salvar. Verifique a conexão Wi-Fi.', 'error');
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-user-check"></i> Finalizar Cadastro';
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>

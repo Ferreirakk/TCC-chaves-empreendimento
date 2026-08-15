@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Corporativo - Chaves Treinamentos</title>
+    <!-- Google Fonts (Outfit & Plus Jakarta Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --font-primary: 'Plus Jakarta Sans', sans-serif;
+            --font-secondary: 'Outfit', sans-serif;
+            --color-bg-light: #f8fafc;
+            --color-bg-white: #ffffff;
+            --color-primary: #0f4c81;
+            --color-primary-light: #2563eb;
+            --color-border: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-radius-md: 12px;
+            --border-radius-sm: 6px;
+            --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            --shadow-card-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--color-bg-light);
+            color: var(--text-main);
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .admin-container {
+            width: 100%;
+            max-width: 800px;
+            background: var(--color-bg-white);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-card-hover);
+            overflow: hidden;
+            padding: 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: var(--color-primary);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            font-family: var(--font-secondary);
+            color: var(--color-primary);
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .auth-card {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 14px;
+            color: var(--text-muted);
+        }
+
+        .input-wrapper input, .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 14px;
+            padding-left: 40px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius-sm);
+            background-color: var(--color-bg-light);
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--color-primary-light);
+            background-color: #fff;
+            outline: none;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: var(--border-radius-sm);
+            font-family: var(--font-secondary);
+            font-weight: 600;
+            text-align: center;
+            background-color: var(--color-primary);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #0c3c66;
+        }
+
+        .btn-secondary {
+            background-color: #f1f5f9;
+            color: #475569;
+            margin-top: 15px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e2e8f0;
+        }
+
+        .company-panel {
+            display: none;
+        }
+
+        .grid-forms {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .table-card {
+            margin-top: 30px;
+            border-top: 1px solid var(--color-border);
+            padding-top: 30px;
+        }
+
+        .table-card h2 {
+            font-family: var(--font-secondary);
+            font-size: 1.3rem;
+            color: var(--color-primary);
+            margin-bottom: 15px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        th {
+            background-color: var(--color-bg-light);
+            font-weight: 700;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge-active {
+            background-color: #ecfdf5;
+            color: #059669;
+        }
+
+        .badge-pending {
+            background-color: #fffbeb;
+            color: #d97706;
+        }
+
+        .badge-blocked {
+            background-color: #fef2f2;
+            color: #dc2626;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--color-primary-light);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .error-msg {
+            color: var(--color-danger);
+            font-size: 0.85rem;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-container">
+        <div class="header">
+            <span class="logo-icon"><i class="fa-solid fa-key"></i></span>
+            <h1>Chaves Treinamentos</h1>
+            <p>Painel de Cadastro de Empresas Parceiras</p>
+        </div>
+
+        <!-- AUTH VIEW -->
+        <div id="authView" class="auth-card">
+            <div class="form-group">
+                <label for="accessKey">Senha de Acesso Interno</label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="accessKey" placeholder="Digite a chave da Chaves Treinamentos" required>
+                </div>
+                <div id="authError" class="error-msg">Chave de acesso incorreta!</div>
+            </div>
+            <button class="btn" onclick="checkAuth()">Acessar Painel</button>
+            <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Voltar ao site principal</a>
+        </div>
+
+        <!-- COMPANY REGISTER PANEL -->
+        <div id="companyPanel" class="company-panel">
+            <div class="grid-forms">
+                <form id="formEmpresa" onsubmit="handleRegisterEmpresa(event)">
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label for="emp_nome" style="margin-bottom: 4px;">Nome Fantasia</label>
+                        <input type="text" id="emp_nome" required placeholder="Ex: Chaves Imóveis Ltda." style="padding-left: 12px;">
+                    </div>
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label for="emp_razao" style="margin-bottom: 4px;">Razão Social</label>
+                        <input type="text" id="emp_razao" required placeholder="Ex: Chaves Empreendimentos Imobiliários S/A" style="padding-left: 12px;">
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label for="emp_cnpj" style="margin-bottom: 4px;">CNPJ</label>
+                            <input type="text" id="emp_cnpj" required placeholder="00.000.000/0001-00" style="padding-left: 12px;" oninput="maskCNPJ(this)" maxlength="18">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label for="emp_status" style="margin-bottom: 4px;">Status do Contrato</label>
+                            <select id="emp_status" required style="padding-left: 12px;">
+                                <option value="Ativo">Ativo</option>
+                                <option value="Aguardando Validação">Aguardando Validação</option>
+                                <option value="Bloqueado">Bloqueado</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <hr style="border:0; border-top:1px solid var(--color-border); margin: 15px 0;">
+                    <h3 style="font-size: 1rem; color: var(--color-primary); margin-bottom: 15px;">Dados do Gestor Geral</h3>
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label for="gestor_nome" style="margin-bottom: 4px;">Nome do Gestor</label>
+                        <input type="text" id="gestor_nome" required placeholder="Ex: João da Silva" style="padding-left: 12px;">
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label for="gestor_pin" style="margin-bottom: 4px;">Matrícula (PIN)</label>
+                            <input type="text" id="gestor_pin" required placeholder="Ex: 1010" style="padding-left: 12px;">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label for="gestor_senha" style="margin-bottom: 4px;">Senha de Acesso</label>
+                            <input type="password" id="gestor_senha" required placeholder="Digite a senha" style="padding-left: 12px;">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn"><i class="fa-solid fa-building-circle-check"></i> Cadastrar Empresa e Gestor</button>
+                </form>
+            </div>
+
+            <div class="table-card">
+                <h2>Empresas Cadastradas</h2>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome Fantasia</th>
+                                <th>Razão Social</th>
+                                <th>CNPJ</th>
+                                <th style="text-align:center;">Cód. PIN</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="companyTableBody">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="btn btn-secondary" onclick="logoutAdmin()"><i class="fa-solid fa-right-from-bracket"></i> Sair do Painel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function maskCNPJ(input) {
+            let v = input.value.replace(/\D/g, "");
+            if (v.length > 14) v = v.substring(0, 14);
+            v = v.replace(/^(\d{2})(\d)/, "$1.$2");
+            v = v.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
+            v = v.replace(/\.(\d{3})(\d)/, ".$1/$2");
+            v = v.replace(/(\d{4})(\d)/, "$1-$2");
+            input.value = v;
+        }
+
+        const ACCESS_PASSWORD = "chaves2026";
+        let db = { empresas: [] };
+
+        const apiBase = (window.location.protocol === 'file:' || window.location.hostname === '')
+            ? 'http://localhost:3000'
+            : `${window.location.protocol}//${window.location.host}`;
+
+        async function loadDB() {
+            try {
+                const response = await fetch(`${apiBase}/api/db`);
+                if (response.ok) {
+                    db = await response.json();
+                }
+            } catch (e) {
+                console.error("Backend off, fallback pro localStorage.");
+                const savedData = localStorage.getItem("chaves_tcc_db_v2");
+                if (savedData) {
+                    db = JSON.parse(savedData);
+                }
+            }
+            
+            // Auto-migrate if loaded from old localStorage
+            let migrated = false;
+            let currentCompanyCode = 1;
+            const companyCodeMap = {};
+            
+            db.empresas.forEach(emp => {
+                if (!emp.codigo) {
+                    emp.codigo = currentCompanyCode++;
+                    migrated = true;
+                }
+                companyCodeMap[emp.id] = emp.codigo;
+            });
+            
+            const matriculaMap = {};
+            if (db.usuarios) {
+                db.usuarios.forEach(user => {
+                    const codigo = companyCodeMap[user.fk_empresa];
+                    if (codigo && !user.matricula.startsWith(`${codigo}-`)) {
+                        const oldMat = user.matricula;
+                        const newMat = `${codigo}-${oldMat}`;
+                        matriculaMap[oldMat] = newMat;
+                        user.matricula = newMat;
+                        user.id_usuario = `usr_${newMat}`;
+                        migrated = true;
+                    }
+                });
+            }
+            
+            if (migrated) {
+                if (db.extrato_por_usuario) {
+                    const newExtratos = {};
+                    for (const [oldMat, extrato] of Object.entries(db.extrato_por_usuario)) {
+                        newExtratos[matriculaMap[oldMat] || oldMat] = extrato;
+                    }
+                    db.extrato_por_usuario = newExtratos;
+                }
+                saveDB();
+                console.log("Migração local concluída no painel admin.");
+            }
+        }
+
+        async function saveDB() {
+            localStorage.setItem("chaves_tcc_db_v2", JSON.stringify(db));
+            try {
+                await fetch(`${apiBase}/api/db`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(db)
+                });
+            } catch (e) {
+                console.error("Backend off, fallback pro localStorage.");
+            }
+        }
+
+        function checkAuth() {
+            const keyInput = document.getElementById("accessKey").value;
+            const authError = document.getElementById("authError");
+            if (keyInput === ACCESS_PASSWORD) {
+                sessionStorage.setItem("chaves_admin_auth", "true");
+                showPanel();
+            } else {
+                authError.style.display = "block";
+            }
+        }
+
+        async function showPanel() {
+            document.getElementById("authView").style.display = "none";
+            document.getElementById("companyPanel").style.display = "block";
+            await loadDB();
+            renderCompanies();
+        }
+
+        function logoutAdmin() {
+            sessionStorage.removeItem("chaves_admin_auth");
+            document.getElementById("authView").style.display = "block";
+            document.getElementById("companyPanel").style.display = "none";
+            document.getElementById("accessKey").value = "";
+            document.getElementById("authError").style.display = "none";
+        }
+
+        function renderCompanies() {
+            const tbody = document.getElementById("companyTableBody");
+            tbody.innerHTML = "";
+            db.empresas.forEach(emp => {
+                const tr = document.createElement("tr");
+                let badgeClass = "badge-active";
+                if (emp.status_contrato === "Aguardando Validação") badgeClass = "badge-pending";
+                if (emp.status_contrato === "Bloqueado") badgeClass = "badge-blocked";
+
+                tr.innerHTML = `
+                    <td style="font-weight: 700; color: var(--color-primary);">${emp.nome_fantasia}</td>
+                    <td>${emp.razao_social}</td>
+                    <td><code>${emp.cnpj}</code></td>
+                    <td style="text-align:center;">
+                        <span style="display:inline-block; background: var(--color-primary); color:#fff; font-weight:900; font-size:1rem; letter-spacing:2px; padding: 4px 14px; border-radius: 20px; font-family: monospace;">${emp.codigo || '?'}-</span>
+                    </td>
+                    <td><span class="badge ${badgeClass}">${emp.status_contrato}</span></td>
+                    <td><button onclick="deleteEmpresa('${emp.id}')" style="background:none; border:none; color:#dc2626; cursor:pointer;" title="Excluir"><i class="fa-solid fa-trash"></i></button></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        async function deleteEmpresa(idEmpresa) {
+            const senha = prompt("Atenção: Apenas funcionários da Chaves Treinamentos.\\n\\nDigite a senha master para excluir a empresa:");
+            if (senha === "54321") {
+                db.empresas = db.empresas.filter(e => e.id !== idEmpresa);
+                
+                if (db.usuarios) {
+                    const usuariosParaRemover = db.usuarios.filter(u => u.fk_empresa === idEmpresa);
+                    const matriculasParaRemover = usuariosParaRemover.map(u => u.matricula);
+                    
+                    db.usuarios = db.usuarios.filter(u => u.fk_empresa !== idEmpresa);
+                    
+                    if (db.extrato_por_usuario) {
+                        matriculasParaRemover.forEach(mat => {
+                            delete db.extrato_por_usuario[mat];
+                        });
+                    }
+                }
+                
+                await saveDB();
+                renderCompanies();
+                alert("Empresa excluída com sucesso.");
+            } else if (senha !== null) {
+                alert("Senha incorreta! Exclusão não autorizada.");
+            }
+        }
+
+        async function handleRegisterEmpresa(event) {
+            event.preventDefault();
+            const nome = document.getElementById("emp_nome").value.trim();
+            const razao = document.getElementById("emp_razao").value.trim();
+            const cnpj = document.getElementById("emp_cnpj").value.trim();
+            const status = document.getElementById("emp_status").value;
+            const id = "emp_" + nome.toLowerCase().replace(/[^a-z0-9]/g, "_");
+
+            const gestorNome = document.getElementById("gestor_nome").value.trim();
+            const gestorPin = document.getElementById("gestor_pin").value.trim();
+            const gestorSenha = document.getElementById("gestor_senha").value;
+
+            if (!db.usuarios) db.usuarios = [];
+            if (!db.extrato_por_usuario) db.extrato_por_usuario = {};
+
+            if (db.empresas.some(e => e.id === id || e.cnpj === cnpj)) {
+                alert("Esta empresa ou CNPJ já está cadastrada.");
+                return;
+            }
+
+            // Calcula o próximo código da empresa
+            let maxCodigo = 0;
+            if (db.empresas && db.empresas.length > 0) {
+                maxCodigo = Math.max(...db.empresas.map(e => e.codigo || 0));
+            }
+            const novoCodigo = maxCodigo + 1;
+            
+            const matriculaFormatada = `${novoCodigo}-${gestorPin}`;
+
+            if (db.usuarios.some(u => u.matricula === matriculaFormatada)) {
+                alert("Esta Matrícula/PIN do gestor já está em uso.");
+                return;
+            }
+
+            db.empresas.push({ id, codigo: novoCodigo, nome_fantasia: nome, razao_social: razao, cnpj, status_contrato: status });
+            
+            db.usuarios.push({
+                id_usuario: "usr_" + matriculaFormatada,
+                fk_empresa: id,
+                nome_completo: gestorNome,
+                matricula: matriculaFormatada,
+                cargo: "Gestor Geral",
+                setor: "Diretoria",
+                saldo_estrelas: 0,
+                status: "Ativo",
+                senha: gestorSenha,
+                role: "gestor",
+                foto: ""
+            });
+            db.extrato_por_usuario[matriculaFormatada] = [];
+
+            await saveDB();
+            renderCompanies();
+            event.target.reset();
+            alert("Empresa e Gestor cadastrados com sucesso!");
+        }
+
+        // Auto auth if already logged in this session
+        if (sessionStorage.getItem("chaves_admin_auth") === "true") {
+            showPanel();
+        }
+    </script>
+</body>
+</html>
